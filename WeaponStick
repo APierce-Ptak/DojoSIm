@@ -1,0 +1,32 @@
+//Attach to blades so they "stick" to objects tagged as surfaces
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class WeaponStick : MonoBehaviour
+{
+
+
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "surface")
+        {
+            //Debug.Log(" Weapon to surface Hit"); testing code to console output
+            
+            GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+            //Freezes the rigid body constraints(x,y,z)
+       
+
+
+        }
+    }
+
+
+    void OnCollisionExit(Collision collision)
+    {
+        //When not colliding or in the surface tagged object anymore, undoes contraints on rigid body
+        GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+    }
+}
