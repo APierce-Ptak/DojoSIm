@@ -1,0 +1,35 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+
+public class CrateDrop : MonoBehaviour
+{
+
+    public int crateHealth = 100;
+    public int weaponDamage = 10;
+    public GameObject item;
+  //Could add more items and an RNG selection to have a random item or amount of items drop
+
+    void OnCollisionEnter(Collision col)
+    {
+        if (col.gameObject.tag == "Weapon")
+        {
+            crateHealth -= weaponDamage;
+            if (crateHealth <= 0)
+            {
+              //Destroys crate
+                Destroy(gameObject);
+                
+             //Writes to console, for debugging purposes
+               // System.Console.WriteLine("Hit taken");
+               
+               //Creates the item in its place using its posistion and rotation
+                Instantiate(item,transform.position,transform.rotation);
+                   
+            }    
+        }
+      
+    }
+}
+
