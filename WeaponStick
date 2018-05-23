@@ -13,7 +13,7 @@ public class WeaponStick : MonoBehaviour
     {
         if (collision.gameObject.tag == "surface")
         {
-            //Debug.Log(" Weapon to surface Hit"); testing code to console output
+            //System.Console.WriteLine(" Weapon to surface Hit"); testing code to console output
             
             GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
             //Freezes the rigid body constraints(x,y,z)
