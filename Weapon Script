@@ -1,0 +1,54 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+
+
+public class DestroyThingy : MonoBehaviour
+
+{
+
+    public AudioClip destroySound;
+    private AudioSource source1;
+
+    public AudioClip trapSound;
+    private AudioSource source2;
+    public float volume;
+    //Coin Spawn code might not work correctly, possibly due to type
+    public GameObject Coin;
+    public Transform CoinSpawn;
+
+
+
+
+
+    void OnCollisionEnter(Collision col)
+    {
+        if (col.gameObject.tag == "block")
+        {
+            source1 = GetComponent<AudioSource>();
+            source1.PlayOneShot(destroySound, volume);
+            Destroy(col.gameObject);
+            Instantiate(Coin, CoinSpawn.position, CoinSpawn.rotation);
+        }
+        else if (col.gameObject.tag == "trap")
+
+        {
+
+            source2 = GetComponent<AudioSource>();
+            source2.PlayOneShot(trapSound, volume);
+            Destroy(col.gameObject);
+            Instantiate(Coin, CoinSpawn.position, CoinSpawn.rotation);
+
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
